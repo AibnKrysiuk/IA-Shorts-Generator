@@ -3,65 +3,59 @@ import os
 import time
 from dotenv import load_dotenv
 
-# Cargar configuración
 load_dotenv()
 API_TOKEN = os.getenv("HF_TOKEN")
+# URL del modelo FLUX
 API_URL = "https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-schnell"
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
+# Añadimos "vertical mobile 9:16 aspect ratio" al final por si acaso
+ESTETICA = "Gritty graphic novel noir style, heavy black ink outlines, hand-drawn sketchy texture, cel-shaded illustration, deep chiaroscuro shadows, moody desaturated color palette with sickly amber and charcoal tones, rough painterly brushstrokes, dark and ominous atmosphere, non-realistic comic book art, vertical mobile 9:16 aspect ratio"
+
 def consultar_hf(prompt, reintentos=3):
-    """Envía el prompt a Hugging Face y maneja el tiempo de espera"""
+    """Envía el prompt con parámetros de dimensiones para 9:16"""
+    payload = {
+        "inputs": prompt,
+        "parameters": {
+            "width": 576,   # Ancho para 9:16
+            "height": 1024  # Alto para 9:16
+        }
+    }
+    
     for i in range(reintentos):
-        response = requests.post(API_URL, headers=headers, json={"inputs": prompt})
-        
+        response = requests.post(API_URL, headers=headers, json=payload)
         if response.status_code == 200:
             return response.content
-        elif response.status_code == 503: # El modelo se está cargando
-            print(f"⏳ El modelo está cargando... esperando 20s (intento {i+1}/{reintentos})")
+        elif response.status_code == 503:
+            print(f"⏳ Modelo cargando... esperando 20s (intento {i+1}/{reintentos})")
             time.sleep(20)
         else:
             print(f"❌ Error {response.status_code}: {response.text}")
             break
     return None
 
-def ejecutar_buscador():
-    # 1. Crear carpeta si no existe
+def procesar_lista_escenas(lista_escenas):
     if not os.path.exists("imagenes"):
         os.makedirs("imagenes")
 
-    # 2. Leer prompts
-    if not os.path.exists("prompts.txt"):
-        print("❌ No se encontró el archivo prompts.txt")
-        return
+    print(f"🚀 Procesando {len(lista_escenas)} imágenes en formato 9:16...")
 
-    with open("prompts.txt", "r", encoding="utf-8") as f:
-        prompts = [line.strip() for line in f if line.strip()]
+    for escena in lista_escenas:
+        # Usamos el tipo como nombre de archivo
+        nombre_archivo = f"imagenes/{escena['tipo']}.jpg"
+        prompt_final = f"{ESTETICA}, {escena['imagenes']}"
 
-    print(f"🚀 Iniciando descarga de {len(prompts)} imágenes...")
-
-    # 3. Procesar cada prompt
-    for index, prompt in enumerate(prompts):
-        nombre_archivo = f"imagenes/escena_{index + 1}.png"
-        
-        # 1. Verificamos si la imagen ya existe para no gastar cuota innecesariamente
         if os.path.exists(nombre_archivo):
-            print(f"⏩ Saltando escena_{index + 1}, ya existe.")
+            print(f"⏩ Saltando {escena['tipo']}, ya existe.")
             continue
 
-        print(f"🎨 Generando ({index + 1}/{len(prompts)}): {prompt[:40]}...")
-        
-        imagen_bytes = consultar_hf(prompt)
+        print(f"🎨 Generando {escena['tipo']}...")
+        imagen_bytes = consultar_hf(prompt_final)
         
         if imagen_bytes:
             with open(nombre_archivo, "wb") as f:
                 f.write(imagen_bytes)
             print(f"✅ Guardado: {nombre_archivo}")
         
-        # 2. EL PAUSA ESTRATÉGICA:
-        # Esperamos 5 segundos entre imágenes. Esto mantiene tu "reputación" 
-        # limpia ante el Router de Hugging Face.
-        print("Waiting 5 seconds for next request...")
+        # Espera de cortesía para la API
         time.sleep(5)
-
-if __name__ == "__main__":
-    ejecutar_buscador()

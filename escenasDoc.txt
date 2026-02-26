@@ -1,0 +1,30 @@
+tipoDeEscena {
+    text: "texto de la escena"
+    audio: ruta del archivo.mp3
+    imagen: ruta a la imagen.jpg
+    frase: "Frase clave de la escena"
+    tipo: tipo de la escena.
+    duracion : depende del tipo de escena
+    sonido: depende del tipo de escena
+}
+
+
+//===== TIPOS DE ESCENA=====//
+hook
+    duracion = lo que dura la voz
+    sonido = Boom clasico del canal, llamado BoomInicial.mp3 en la carpeta Assets.
+contextoMinimo
+    duracion = si la duracion del audio es menor a 7 segundos, la escena dura 0.5 segundos mas que el audio
+hechoAnomalo
+    duracion = si la duracion del audio es menor a 9 segundos, la escena dura 0.5 segundos mas que el audio
+escaladaDeTension
+    duracion = si la duracion del audio es menor a 9 segundos, la escena dura 0.5 segundos mas que el audio
+    sonido = tension del canal, llamado Tension.mp3 en la carpeta Assets
+puntoDeQuiebre
+    duracion = si la duracion del audio es menor a 9 segundos, la escena dura 0.5 segundos mas que el audio
+    sonido = boom 2 del canal, llamado BoomMenor.mp3 carpeta Assets
+cierreAbierto
+    duracion = si la duracion del audio es menor a 7 segundos, la escena dura 0.5 segundos mas que el audio
+cta
+    duracion = 2 seg
+    sonido = cierre clasico del canal, cierre.mp3 en la carpeta assets.

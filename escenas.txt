@@ -1,0 +1,62 @@
+escena 1{
+    text: "Debajo de la marea de Innsmouth, algo que no debería existir ha despertado."
+    imagenes: "Underwater view of a colossal, shadowy creature with glowing eyes beneath dark turbulent waves, cinematic lighting, lovecraftian horror, 8k resolution"
+    frase: "El abismo finalmente ha respondido."
+    tipo: hook
+}
+
+escena 2{
+    text: "El viejo faro de la costa llevaba décadas apagado, pero anoche, una luz verde brotó de sus ruinas."
+    imagenes: "Abandoned gothic lighthouse on a jagged cliff, emitting a brilliant emerald green beam into a pitch black stormy sky, eerie atmosphere"
+    frase: "Hay luces que no deberían encenderse."
+    tipo: contextominimo
+}
+
+escena 3{
+    text: "Los pescadores ya no traen redes con peces, sino estatuillas de oro que vibran con un pulso inhumano."
+    imagenes: "Close-up of wet, weathered hands holding a small, grotesque golden idol with tentacles, glowing with an unnatural faint light"
+    frase: "Un tesoro que nadie debería poseer."
+    tipo: hechoanomalo
+}
+
+escena 4{
+    text: "Las sombras en el pueblo han comenzado a moverse de forma independiente, devorando la poca luz que queda."
+    imagenes: "Narrow cobblestone street in a foggy old town, shadows of buildings twisting into claw-like shapes on the walls, dark noir style"
+    frase: "La oscuridad tiene hambre."
+    tipo: escaladadetension
+}
+
+escena 5{
+    text: "En el centro de la bahía, el océano ha comenzado a drenarse hacia un vacío infinito abierto en el lecho marino."
+    imagenes: "Aerial view of a massive whirlpool in the middle of a dark ocean, revealing cyclopean stone structures at the bottom of the vortex"
+    frase: "El mundo se está desangrando."
+    tipo: escaladadetension2
+}
+
+escena 6{
+    text: "Una voz que no se escucha con los oídos, sino con los huesos, susurra desde la negrura: 'Él ha vuelto'."
+    imagenes: "Extreme close-up of a human eye wide with terror, reflecting a massive, incomprehensible monster with tentacles in the pupil"
+    frase: "La cordura es un velo muy fino."
+    tipo: puntoquiebre
+}
+
+escena 7{
+    text: "El cielo se desgarra como papel viejo, mostrando dimensiones que la mente humana no puede comprender."
+    imagenes: "A sky cracking open like broken glass, revealing swirling cosmic nebulae of impossible colors and ancient terrifying eyes"
+    frase: "Contempla el verdadero rostro del cosmos."
+    tipo: puntoquiebre2
+}
+
+escena 8{
+    text: "Si escuchas el sonido de una campana bajo el agua... corre, aunque para entonces ya sea demasiado tarde."
+    imagenes: "A rusty bell sinking into deep dark water, surrounded by rising bubbles and pale hands reaching from the depths"
+    frase: "El fin no es la muerte, es el olvido."
+    tipo: cierreabierto
+}
+
+escena 9{
+    text: "Suscríbete para explorar los rincones más oscuros de la realidad. La logia te espera."
+    imagenes: ""
+    frase: "ÚNETE A NOSOTROS"
+    tipo: cta
+}
